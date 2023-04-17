@@ -24,3 +24,5 @@ plot(pbmc@reductions$umap@cell.embeddings[order(EXP),], col=COL[order(EXP)], cex
 
 DimPlot(pbmc, group.by='age',label=TRUE)+NoLegend()
 DimPlot(pbmc, group.by='figure_clusters',label=TRUE)+NoLegend()
+
+
