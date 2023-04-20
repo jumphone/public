@@ -9,7 +9,7 @@ tabix -p bed $INPUT\.agg.sorted.bed.gz
 
 
 bedtools groupby -i $INPUT -grp 4 -opCols 5 -ops sum > $INPUT\.cell_stat.txt
-
+bedtools summary -i $INPUT -g /home/database/annotation/hg19/hg19.chrom.sizes > $INPUT\.bed_stat.txt
 
 
 
