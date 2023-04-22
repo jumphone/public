@@ -77,7 +77,7 @@ library('circlize')
 
 col_fun =colorRamp2(c(-2, -1, 0, 1, 2 ), c('royalblue3','royalblue1','grey90','indianred1','red1'))
 o.mat=as.matrix(LGFD_MAT)
-ht1=Heatmap(o.mat,row_title='',name="lgfd",cluster_rows=F,cluster_columns=F,
+ht1=Heatmap(o.mat,row_title='',name="lgfc",cluster_rows=F,cluster_columns=F,
     show_column_dend = F, show_row_dend = F,
     show_column_names=T, show_row_names=T,
     col=col_fun, border = TRUE,
@@ -113,29 +113,14 @@ ht2=Heatmap(o.mat,row_title='',name="padj",cluster_rows=F,cluster_columns=F,
 print(ht2)
 
 
-pdf('LGFD_PADJ.pdf',width=10,height=5)
+pdf('LGFD_PADJ.pdf',width=5,height=3)
 print(ht1)
 print(ht2)
 dev.off()
 
 
 
-
-
 write.table(OUT$edger_lrt,'OUT_edger_lrt.txt',sep='\t',row.names=T,col.names=T,quote=F)
-
-
-
-DE=OUT$edger_lrt
-DE$p_val_adj[which(DE$p_val_adj<10**-300)]=10**-300
-plot(DE$avg_logFC, -log(DE$p_val_adj,10),pch=16,col='grey70')
-this_index=which(DE$gene=='CTNNB1')
-points(DE$avg_logFC[this_index], -log(DE$p_val_adj,10)[this_index],col='red',pch=16)
-this_index=which(DE$gene=='SOX11')
-points(DE$avg_logFC[this_index], -log(DE$p_val_adj,10)[this_index],col='red',pch=16)
-this_index=which(DE$gene=='HNRNPH1')
-points(DE$avg_logFC[this_index], -log(DE$p_val_adj,10)[this_index],col='red',pch=16)
-
 
 
 
