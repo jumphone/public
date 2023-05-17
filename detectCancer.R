@@ -21,7 +21,6 @@ SPLIT=inferloop.splitILS(VT, VN, r=0)
 BGW=VT
 BGW[which(SPLIT$clst==3)]=1
 BGW[which(SPLIT$clst!=3)]=0
-#BGW=BGW[which(SPLIT$clst %in% c(1,3))]
 
 ###########################
 OUT=fitdevo(TEST.DATA,BGW)
