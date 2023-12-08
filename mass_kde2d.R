@@ -18,6 +18,10 @@ plot(DVEC,col=COL, pch=16)
 
 Z=fields::interp.surface(KDEN, VEC)
 
+P=ecdf(DEN)(Z)
+
+
+
 
 
 
