@@ -14,3 +14,11 @@ DEN=as.numeric(KDEN$z)
 source('/home/toolkit/src/VISA.R')
 COL=visa.vcol(DEN,CV=c(min(DEN),max(DEN)),CN=c('blue','red'))
 plot(DVEC,col=COL, pch=16)
+
+
+Z=fields::interp.surface(KDEN, VEC)
+
+
+
+
+
