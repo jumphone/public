@@ -5,9 +5,13 @@ library(Libra)
 
 SEED=123 # We have tested other seed and got similar results.
 pbmc=readRDS('../Cerebellum/Fetal_cerebellum_final_cluster_1.rds')
-pbmc$cell_type=rep('All',ncol(pbmc))
+
+# because development stages (different weeks) are not replicates, we ramdomly assign replicate labels
 set.seed(SEED)
 pbmc$replicate=sample(c('S1','S2','S3','S4','S5'),ncol(pbmc),replace=T)
+
+# because the function named "run_de" use "label" to guide the  DEG analysis, we assign cell types ('TCP' v.s. "nonTCP") to the variable named "label" but not "cell_type".
+pbmc$cell_type=rep('All',ncol(pbmc))
 pbmc$label=rep('nonTCP',length(pbmc$cell_type))
 pbmc$label[which(pbmc$celltype=='02xTCP')]='TCP'
 pbmc$label=factor(pbmc$label,levels = c("TCP","nonTCP"))
