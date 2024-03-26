@@ -1,7 +1,8 @@
 
 library(Biobase)
-library(Seurat)
+library(Seurat) #Seurat4
 library(Libra)
+# Libra for Seurat4 can be found at https://github.com/jumphone/public/tree/main/download
 
 SEED=123 # We have tested other seed and got similar results.
 pbmc=readRDS('../Cerebellum/Fetal_cerebellum_final_cluster_1.rds')
