@@ -1,9 +1,6 @@
-setwd('/newdisk/database/TCP')
-
 
 # Seurat 4
 library(Seurat)
-protein_coding=read.table('/home/database/annotation/hg19/Homo_sapiens.GRCh37.75.chr.pc.gene.SYM.bed',sep='\t')[,4]
 natneu_2021=readRDS('/newdisk/database/TCP/RDS/NatNeu2021_seurat.rds') # get from UCSC single-cell database
 
 # Quality control
