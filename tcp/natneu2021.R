@@ -10,7 +10,10 @@ DefaultAssay(natneu_2021_nuclei)='RNA'
 natneu_2021_nuclei=NormalizeData(natneu_2021_nuclei, normalization.method = "LogNormalize", scale.factor = 10000)
 
 MARKER=c('HNRNPH1','SOX11','CTNNB1','NEUROD1','PDGFRA','ACTB','GAPDH')
-FeaturePlot(natneu_2021_nuclei, features=MARKER,order=T,slot='data',cols=c('royalblue1','grey90','indianred1','gold1'))
+
+pdf('~/tmp.pdf',width=15,height=15)
+FeaturePlot(natneu_2021_nuclei, features=MARKER,order=T,slot='data',cols=c('royalblue1','grey90','indianred1','gold1'),pt.size=0.1)
+dev.off()
 
 
 
