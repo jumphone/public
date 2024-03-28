@@ -15,6 +15,10 @@ pdf('tmp.pdf',width=15,height=15)
 FeaturePlot(natneu_2021_nuclei, features=MARKER,order=T,slot='data',cols=c('royalblue1','grey90','indianred1','gold1'),pt.size=0.1)
 dev.off()
 
+
+pdf('~/tmp_count.pdf',width=15,height=15)
+FeaturePlot(natneu_2021_nuclei, features=MARKER,order=T,slot='counts',cols=c('royalblue1','grey90','indianred1','gold1'),pt.size=0.1)
+dev.off()
 ####################################################################################
 # For Zaili
 
@@ -23,3 +27,33 @@ natneu_2021=readRDS('/newdisk/database/TCP/RDS/NatNeu2021_seurat.rds') # get fro
 natneu_2021_counts=natneu_2021[['RNA']]@counts
 natneu_2021_meta=natneu_2021@meta.data
 natneu_2021_new <- CreateSeuratObject(counts = natneu_2021_counts, meta.data =natneu_2021_meta, project = "natneu_2021", min.cells = 0, min.features = 0)
+
+saveRDS(natneu_2021_meta,'/newdisk/database/TCP/RDS/NatNeu2021_meta.rds')
+saveRDS(natneu_2021_counts,'/newdisk/database/TCP/RDS/NatNeu2021_counts.rds')
+
+##################
+
+natneu_2021_counts=readRDS('/newdisk/database/TCP/RDS/NatNeu2021_meta.rds')
+natneu_2021_meta=readRDS('/newdisk/database/TCP/RDS/NatNeu2021_counts.rds')
+natneu_2021 <- CreateSeuratObject(counts = natneu_2021_counts, meta.data =natneu_2021_meta, project = "natneu_2021", min.cells = 0, min.features = 0)
+
+
+# Quality control
+natneu_2021_nuclei=subset(natneu_2021,subset = nFeature_RNA > 500 & nFeature_RNA < 3000, cells=colnames(natneu_2021)[which(natneu_2021$type %in% c('nuclei','nulcei'))])
+
+DefaultAssay(natneu_2021_nuclei)='RNA'
+natneu_2021_nuclei=NormalizeData(natneu_2021_nuclei, normalization.method = "LogNormalize", scale.factor = 10000)
+
+MARKER=c('HNRNPH1','SOX11','CTNNB1','NEUROD1','PDGFRA','ACTB','GAPDH','SOX2','SOX4')
+
+pdf('tmp.pdf',width=15,height=15)
+FeaturePlot(natneu_2021_nuclei, features=MARKER,order=T,slot='data',cols=c('royalblue1','grey90','indianred1','gold1'),pt.size=0.1)
+dev.off()
+
+
+pdf('~/tmp_count.pdf',width=15,height=15)
+FeaturePlot(natneu_2021_nuclei, features=MARKER,order=T,slot='counts',cols=c('royalblue1','grey90','indianred1','gold1'),pt.size=0.1)
+dev.off()
+
+
+
