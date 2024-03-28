@@ -15,9 +15,11 @@ pdf('tmp.pdf',width=15,height=15)
 FeaturePlot(natneu_2021_nuclei, features=MARKER,order=T,slot='data',cols=c('royalblue1','grey90','indianred1','gold1'),pt.size=0.1)
 dev.off()
 
+####################################################################################
+# For Zaili
 
-
-
-
-
-
+library(Seurat)
+natneu_2021=readRDS('/newdisk/database/TCP/RDS/NatNeu2021_seurat.rds') # get from UCSC single-cell database
+natneu_2021_counts=natneu_2021[['RNA']]@counts
+natneu_2021_meta=natneu_2021@meta.data
+natneu_2021_new <- CreateSeuratObject(counts = natneu_2021_counts, meta.data =natneu_2021_meta, project = "natneu_2021", min.cells = 0, min.features = 0)
