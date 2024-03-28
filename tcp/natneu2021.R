@@ -15,10 +15,10 @@ pdf('tmp.pdf',width=15,height=15)
 FeaturePlot(natneu_2021_nuclei, features=MARKER,order=T,slot='data',cols=c('royalblue1','grey90','indianred1','gold1'),pt.size=0.1)
 dev.off()
 
-
-pdf('~/tmp_count.pdf',width=15,height=15)
+pdf('tmp_count.pdf',width=15,height=15)
 FeaturePlot(natneu_2021_nuclei, features=MARKER,order=T,slot='counts',cols=c('royalblue1','grey90','indianred1','gold1'),pt.size=0.1)
 dev.off()
+
 ####################################################################################
 # For Zaili
 
@@ -51,7 +51,7 @@ FeaturePlot(natneu_2021_nuclei, features=MARKER,order=T,slot='data',cols=c('roya
 dev.off()
 
 
-pdf('~/tmp_count.pdf',width=15,height=15)
+pdf('tmp_count.pdf',width=15,height=15)
 FeaturePlot(natneu_2021_nuclei, features=MARKER,order=T,slot='counts',cols=c('royalblue1','grey90','indianred1','gold1'),pt.size=0.1)
 dev.off()
 
