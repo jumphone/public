@@ -33,5 +33,5 @@ UNUM=RS-TAB+t(CS-t(TAB))+TAB
 RMAT=TAB/UNUM
 heatmap(RMAT, scale=NULL)
 
-
+boxplot(rowSums(MAT)~clst)
 
