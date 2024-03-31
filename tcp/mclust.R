@@ -3,35 +3,32 @@ pbmc=readRDS('Nature2022_Fetal_cerebellum_final_cluster_1.rds')
 
 DATA=pbmc[['RNA']]@data
 TYPE=pbmc$celltype
+UMAP=pbmc@reductions$umap@cell.embeddings
 
+set.seed(123)
+RANDOM_INDEX=sample(1:ncol(DATA),10000)
+
+UDATA=DATA[,RANDOM_INDEX]
+UTYPE=TYPE[RANDOM_INDEX]
+UUMAP=UMAP[RANDOM_INDEX,]
 
 MARKER=c('SOX11','HNRNPH1','CTNNB1')
-MAT=t(as.matrix(DATA[MARKER,]))
-SMAT=apply(MAT,2,scale)
+MAT=t(as.matrix(UDATA[MARKER,]))
+
+df=MAT
+dist_matrix <- dist(df, method = "euclidean")
+hc <- hclust(dist_matrix) 
+clst=cutree(hc,k=20)
 
 
-library(mclust)
-
-X=SMAT
-class=TYPE
-
-BIC <-mclustBIC(X,G=10:30)
-saveRDS(BIC, file='mclust_bic.rds')
-
-plot(BIC)
-
-mod1 <- Mclust(X, x = BIC)
-summary(mod1, parameters = TRUE)
-
-
-TAB=as.matrix(table(class, mod1$classification))
-
+TAB=as.matrix(table(UTYPE, clst))
 RS=rowSums(TAB)
 CS=colSums(TAB)
 
-UNUM=RS-TAb+t(CS-t(TAB))+TAB
+UNUM=RS-TAB+t(CS-t(TAB))+TAB
 
-
+RMAT=TAB/UNUM
+heatmap(RMAT, scale=NULL)
 
 
 
