@@ -15,10 +15,13 @@ UUMAP=UMAP[RANDOM_INDEX,]
 MARKER=c('SOX11','HNRNPH1','CTNNB1')
 MAT=t(as.matrix(UDATA[MARKER,]))
 
+############
+K=20
+##############
 df=MAT
 dist_matrix <- dist(df, method = "euclidean")
 hc <- hclust(dist_matrix) 
-clst=cutree(hc,k=20)
+clst=cutree(hc,k=K)
 
 
 TAB=as.matrix(table(UTYPE, clst))
