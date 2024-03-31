@@ -24,7 +24,14 @@ mod1 <- Mclust(X, x = BIC)
 summary(mod1, parameters = TRUE)
 
 
-table(class, mod1$classification)
+TAB=as.matrix(table(class, mod1$classification))
+
+RS=rowSums(TAB)
+CS=colSums(TAB)
+
+UNUM=RS-TAb+t(CS-t(TAB))+TAB
+
+
 
 
 
