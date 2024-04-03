@@ -1,0 +1,14 @@
+
+alias rm='rm -i'
+alias ls='ls --color'
+alias cp='cp -i'
+alias cprm='cp -r -f'
+alias mv='mv -i'
+alias vi='vim'
+alias du='du -hc --max-depth=1'
+
+
+export PATH=$PATH:/home/toolkit/tools/R-4.2.0/bin/
+
+
+
